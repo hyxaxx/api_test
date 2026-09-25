@@ -1,0 +1,15 @@
+# PyCharm IDE文件
+.idea/
+
+# Python缓存文件
+__pycache__/
+*.pyc
+*.pyo
+
+# pytest缓存、报告
+.pytest_cache/
+report.html
+
+# 虚拟环境
+venv/
+.venv/

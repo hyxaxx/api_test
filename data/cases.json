@@ -1,0 +1,101 @@
+[
+  {
+    "name": "GET 无参数",
+    "method": "GET",
+    "path": "/get",
+    "expected_status": 200
+  },
+  {
+    "name": "GET 带 URL 参数",
+    "method": "GET",
+    "path": "/get",
+    "params": {"name": "hyx"},
+    "expected_status": 200
+  },
+  {
+    "name": "POST 提交 JSON",
+    "method": "POST",
+    "path": "/post",
+    "json": {"name": "hyx"},
+    "expected_status": 200
+  },
+  {
+    "name": "请求不存在的路径",
+    "method": "GET",
+    "path": "/thispathdoesnotexist",
+    "expected_status": 404
+  },
+  {
+    "name": "指定返回 500",
+    "method": "GET",
+    "path": "/status/500",
+    "expected_status": 500
+  },
+  {
+    "name": "status_200正常响应",
+    "path": "/status/200",
+    "method": "GET",
+    "expected_status": 200
+  },
+  {
+    "name": "status_301重定向",
+    "path": "/status/301",
+    "method": "GET",
+    "expected_status": 301,
+    "allow_redirects": false
+  },
+  {
+    "name": "自定义header请求头",
+    "path": "/headers",
+    "method": "GET",
+    "headers": {"User-Agent": "PytestApiTest/1.0", "token": "abc123xyz"},
+    "expected_status": 200
+  },
+  {
+    "name": "basic_auth认证成功",
+    "path": "/basic-auth/user/pass",
+    "method": "GET",
+    "auth": ["user", "pass"],
+    "expected_status": 200
+  },
+  {
+    "name": "basic_auth认证失败",
+    "path": "/basic-auth/user/pass",
+    "method": "GET",
+    "auth": ["user", "wrongpass"],
+    "expected_status": 401
+  },
+  {
+    "name": "redirect_1次重定向",
+    "path": "/redirect/1",
+    "method": "GET",
+    "expected_status": 302,
+    "allow_redirects": false
+  },
+  {
+    "name": "post_form表单提交",
+    "path": "/post",
+    "method": "POST",
+    "data": {"user": "tom", "pwd": "123456"},
+    "expected_status": 200
+  },
+  {
+    "name": "put方法测试",
+    "path": "/put",
+    "method": "PUT",
+    "json": {"id": 100},
+    "expected_status": 200
+  },
+  {
+    "name": "delete方法测试",
+    "path": "/delete",
+    "method": "DELETE",
+    "expected_status": 200
+  },
+  {
+    "name": "jsonplaceholder假数据-posts1",
+    "path": "https://jsonplaceholder.typicode.com/posts/1",
+    "method": "GET",
+    "expected_status": 200
+  }
+]
