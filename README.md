@@ -1,3 +1,4 @@
+![API Tests](https://github.com/hyxaxx/api_test/actions/workflows/test.yml/badge.svg)
 # 接口自动化测试项目
 
 基于 Python + requests + pytest 的接口自动化测试框架。测试用例通过 JSON 文件管理，实现**数据与代码分离**——新增用例只需改数据，不用动代码。
