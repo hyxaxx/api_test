@@ -23,6 +23,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: 启动 Mock 服务
+        run: |
+          python mock_server.py &
+          sleep 3
+          curl -s -o /dev/null -w "登录接口返回: %{http_code}\n" http://127.0.0.1:5000/login
 
       - name: 运行测试
         run: pytest -v
