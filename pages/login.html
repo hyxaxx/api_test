@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>登录</title></head>
+<body>
+  <h1>登录</h1>
+  <input id="username" type="text" placeholder="用户名">
+  <input id="password" type="password" placeholder="密码">
+  <button id="submit">登录</button>
+  <div id="message"></div>
+
+  <script>
+    document.getElementById('submit').onclick = function () {
+      var u = document.getElementById('username').value;
+      var p = document.getElementById('password').value;
+      var msg = document.getElementById('message');
+      msg.textContent = (u === 'admin' && p === '123456')
+        ? '登录成功' : '用户名或密码错误';
+    };
+  </script>
+</body>
+</html>
