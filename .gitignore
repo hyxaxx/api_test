@@ -13,3 +13,11 @@ report.html
 # 虚拟环境
 venv/
 .venv/
+
+# Allure 报告
+allure-results/
+allure-report/
+
+# JMeter 结果
+*.jtl
+jmeter-report/
