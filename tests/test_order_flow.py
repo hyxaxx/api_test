@@ -1,6 +1,6 @@
 import pytest
 import requests
-
+import allure
 BASE = "http://127.0.0.1:5000"
 
 
@@ -19,19 +19,20 @@ def auth_header(token):
     return {"Authorization": token}
 
 
+@allure.feature("订单业务流")
+@allure.story("完整下单流程")
 def test_full_order_flow(auth_header):
-    """完整业务流：创建订单 → 查询订单"""
-    # 1. 创建订单
-    r = requests.post(f"{BASE}/orders", json={"amount": 100},
-                      headers=auth_header, timeout=5)
-    assert r.status_code == 201
-    order_id = r.json()["order_id"]
+    with allure.step("创建订单"):
+        r = requests.post(f"{BASE}/orders", json={"amount": 100},
+                          headers=auth_header, timeout=5)
+        assert r.status_code == 201
+        order_id = r.json()["order_id"]
 
-    # 2. 用上一步拿到的 id 查详情
-    r = requests.get(f"{BASE}/orders/{order_id}",
-                     headers=auth_header, timeout=5)
-    assert r.status_code == 200
-    assert r.json()["data"]["amount"] == 100      # ← 数据真的传对了吗
+    with allure.step(f"查询订单 {order_id}"):
+        r = requests.get(f"{BASE}/orders/{order_id}",
+                         headers=auth_header, timeout=5)
+        assert r.status_code == 200
+        assert r.json()["data"]["amount"] == 100
 
 def test_login_wrong_password():
     r = requests.post(f"{BASE}/login",

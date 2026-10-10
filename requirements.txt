@@ -4,3 +4,4 @@ flask
 openpyxl
 selenium
 locust
+allure-pytest
